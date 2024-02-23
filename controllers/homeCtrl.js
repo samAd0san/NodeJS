@@ -10,7 +10,7 @@ class HomeCtrl{
     }
 }
 
-// const homeObj = new HomeCtrl();
-// module.exports = homeObj;
+const homeObj = new HomeCtrl();
+module.exports = homeObj;
 
-module.exports = new HomeCtrl();
+// module.exports = new HomeCtrl();
