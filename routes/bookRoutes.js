@@ -14,5 +14,6 @@ router.get('/books/:id',booksCtrl.getById);
 router.post('/books',booksCtrl.post); // here in booksCtrl.post, 'post' is a custom method created in booksCtrl file
 router.delete('/books/:id',booksCtrl.remove);
 router.put('/books/:id',booksCtrl.put);
+router.patch('/books/:id',booksCtrl.patch);
 
 module.exports = router;

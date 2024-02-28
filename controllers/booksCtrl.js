@@ -93,6 +93,22 @@ const put = (req,res) => {
     res.send();
 }
 
+// Using the Update operation in 'CRUD' i.e partial update the existing element
+const patch = (req,res) => {
+    const id = parseInt(req.params.id);
+    const playload = req.body;
+
+    for(let i=0; i < bookDb.length; i++){
+        if(bookDb[i].id === id){
+            for(let key in playload){
+                bookDb[i][key] = playload[key]; // check readme.md to understand this code 
+            }
+        }
+    }
+    res.status(204);
+    res.send();
+}
+
 // exporting the modules so that other files can access it
 module.exports = {
     books,
@@ -101,5 +117,5 @@ module.exports = {
     post,
     remove,
     put,
-
+    patch,
 }
