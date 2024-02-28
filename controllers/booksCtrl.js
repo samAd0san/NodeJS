@@ -1,14 +1,19 @@
 // index.js -> routes -> controllers -> service -> repository
 
+// We are applying CRUD Operation in this file (CREATE(POST), READ(GET), UPDATE(PUT,PATCH), DELETE(DELETE))
+
+// This is like a database but in cache memory (The changes are not permanent since it resides in the program itself)
 const bookDb = [{id:1,name:'Atomic Habits',price:499},{id:2,name:'OniiSan',price:349}];
 const authorDb = ['James Bond','Karl bond'];
 
 // Creating a handler function for callback (fn for bookDb)
+// 2.READ in 'CRUD' 
 const books = (req,res)=> {
     res.json(bookDb);
 };
 
 // Creating a handler function for callback (fn for authorsDb)
+// 2. READ in 'CRUD' 
 const authors = (req,res)=> {
     res.json(authorDb);
 }
@@ -56,7 +61,7 @@ const post = (req,res) => {
 }
 
 // Using the Delete operation in 'CRUD' i.e removing a resource from the bookDb
-// 2. DELETE (remove)
+// 4. DELETE (remove)
 const remove = (req,res) => {
     const id = parseInt(req.params.id);
 
@@ -72,6 +77,7 @@ const remove = (req,res) => {
 }
 
 // Using the Update operation in 'CRUD' i.e full update the existing element
+// 3. UPDATE(PUT)
 const put = (req,res) => {
     const id = parseInt(req.params.id);
     const playload = req.body; // is extracting the request body from the req object and assigning it to the variable payload.
@@ -94,6 +100,7 @@ const put = (req,res) => {
 }
 
 // Using the Update operation in 'CRUD' i.e partial update the existing element
+// 3. UPDATE(PATCH)
 const patch = (req,res) => {
     const id = parseInt(req.params.id);
     const playload = req.body;
