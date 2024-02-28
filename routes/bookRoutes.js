@@ -12,5 +12,7 @@ router.get('/authors',booksCtrl.authors);
 router.get('/books/:id',booksCtrl.getById);
 // creating a resource in bookDb
 router.post('/books',booksCtrl.post); // here in booksCtrl.post, 'post' is a custom method created in booksCtrl file
+router.delete('/books/:id',booksCtrl.remove);
+router.put('/books/:id',booksCtrl.put);
 
 module.exports = router;

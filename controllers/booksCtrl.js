@@ -33,18 +33,64 @@ const getById = (req,res) => {
     }
 };
 
+// Creating a function isInvalid 
+const isInvalid = (body) => {
+    return ( !body.id || !body.name || !body.price )
+}
 // Using the create operation in 'CRUD' i.e creating a resource and adding to the bookDb
+// 1. CREATE (POST)
 const post = (req,res) => {
     const body = req.body; // body - allows to extract values from objects and arrays and assign them to variables.
-
     // or we can also use shorthand property (refer notes)
     // const {body} = req; 
 
-    console.log('body',body);
-    bookDb.push(body);
+    // If the user i/p invalid parameters 
+    if(isInvalid(body)){
+        res.status(400);
+        res.send('Bad Request');
+    }else{ // If the user i/p valid parameters
+        bookDb.push(body);
+        res.status(201);
+        res.send('Created');
+    }
+}
 
-    res.status(201);
-    res.send('Created');
+// Using the Delete operation in 'CRUD' i.e removing a resource from the bookDb
+// 2. DELETE (remove)
+const remove = (req,res) => {
+    const id = parseInt(req.params.id);
+
+    for(let i=0; i < bookDb.length; i++){
+        if(bookDb[i].id === id){
+            bookDb.splice(i,1);
+            break;
+        }
+    }
+
+    res.status(204);
+    res.send();
+}
+
+// Using the Update operation in 'CRUD' i.e full update the existing element
+const put = (req,res) => {
+    const id = parseInt(req.params.id);
+    const playload = req.body; // is extracting the request body from the req object and assigning it to the variable payload.
+
+    if(isInvalid(playload)) {
+        res.status(400);
+        res.send('Bad request');
+        return;
+    }
+
+    // we are assigning the new values given in playload through the request to the existing data 
+    for(let i=0; i < bookDb.length; i++) {
+        if(bookDb[i].id === id) {
+            bookDb[i].name = playload.name;
+            bookDb[i].price = playload.price;
+        }
+    }
+    res.status(204);
+    res.send();
 }
 
 // exporting the modules so that other files can access it
@@ -53,4 +99,7 @@ module.exports = {
     authors,
     getById,
     post,
+    remove,
+    put,
+
 }
