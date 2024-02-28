@@ -10,5 +10,9 @@ app.listen(port,()=>{
     console.log(`The port is running on ${port}`);
 })
 
+// when creating the new resources using post i was getting null so resolve that
+app.use(express.json());
+
+// READ Operation in CRUD
 app.use(homeRoutes);
 app.use(bookRoutes);
