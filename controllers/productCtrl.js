@@ -1,16 +1,17 @@
-const Product = require('../models/productModel');
+// const Product = require('../models/productModel'); // shifted to productRepo.js
+const ProductRepo = require('../repositories/productRepo');
 
 /*Importing productModel.js in productCtrl.js enables the controller to access and manipulate the product data using the defined Mongoose model. */
 // index.js -> routes -> controllers -> model
 
-/* We are using async and await because all these methods are asynchronous becaues it may take n number of time to fetch the data from the 
+/* We are using async and await because all these methods are asynchronous and it may take n number of time to fetch the data from the 
 data base, so we prefer async and await methods */
 
 // 2. READ (CRUD)
 const get = async(req,res) => {
     try{
 
-        const data = await Product.find({},{ __v:0});
+        const data = await ProductRepo.get();
         res.status(200);
         res.json(data);
     }catch{
@@ -23,7 +24,7 @@ const get = async(req,res) => {
 const getById = async(req,res) => {
     const id = req.params.id;
     // findById() function in Mongoose is used to find a single document in a MongoDB collection by its unique identifier (ID).
-    const data = await Product.findById(id,{ __v:0});
+    const data = await ProductRepo.getById(id);
 
     if(!data){
         res.status(500);
@@ -38,8 +39,8 @@ const getById = async(req,res) => {
 const post = async(req,res) =>{
     try{
         const body = req.body;
-        const product = new Product(body);
-        await product.save(); // The save() method is a Mongoose function used to save a new document to the MongoDB database.
+        await ProductRepo.create(body);
+        // The save() method is a Mongoose function used to save a new document to the MongoDB database.
 
         res.status(201);
         res.send('Created');
@@ -54,7 +55,8 @@ const post = async(req,res) =>{
 const remove = async(req,res) => {
     try{
         const id = req.params.id;
-        await Product.deleteOne({_id: id});
+        await ProductRepo.remove(id);
+
         res.status(204);
         res.send(); 
     }catch(err){
@@ -67,12 +69,25 @@ const remove = async(req,res) => {
 const put = async(req,res) => {
     try{
         const id = req.params.id;
-        await Product.updateOne({_id: id}, req.body); // req.body is used to access the data sent in the body of an HTTP request.
+        await ProductRepo.put(id, req.body)
+         // req.body is used to access the data sent in the body of an HTTP request.
         res.status(204);
         res.send();
     }catch{
         res.status(500);
         res.send('Internal Server Error');
+    }
+}
+
+// 3. UPDATE (CRUD)
+const patch = async(req,res) => {
+    try{
+        const id = req.params.id;
+        // await Product.updateOne({_id: id}, {$set: req.body});
+        await ProductRepo.patch(id,{$set: req.body});
+        res.status(204).send();
+    }catch{
+        res.status(500).send('Internal Server Error');
     }
 }
 
@@ -82,4 +97,5 @@ module.exports = {
     post,
     remove,
     put,
+    patch,
 }
