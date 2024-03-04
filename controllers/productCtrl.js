@@ -10,8 +10,10 @@ data base, so we prefer async and await methods */
 // 2. READ (CRUD)
 const get = async(req,res) => {
     try{
+        const page = req.params.page || 1;
+        const size = req.params.size || 2;
 
-        const data = await ProductRepo.get();
+        const data = await ProductRepo.get(page,size);
         res.status(200);
         res.json(data);
     }catch{
@@ -85,6 +87,7 @@ const patch = async(req,res) => {
         const id = req.params.id;
         // await Product.updateOne({_id: id}, {$set: req.body});
         await ProductRepo.patch(id,{$set: req.body});
+        // $set is an operator used to update specific fields in a document without replacing the entire document.
         res.status(204).send();
     }catch{
         res.status(500).send('Internal Server Error');

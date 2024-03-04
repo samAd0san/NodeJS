@@ -3,6 +3,7 @@ const productCtrl = require('../controllers/productCtrl');
 const router = express.Router();
 
 router.get('/products',productCtrl.get);
+router.get('/products/page/:page/size/:size',productCtrl.get);
 router.get('/products/:id',productCtrl.getById);
 
 router.post('/products',productCtrl.post);

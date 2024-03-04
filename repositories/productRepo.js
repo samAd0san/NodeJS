@@ -1,8 +1,21 @@
 const Product = require('../models/productModel');
 
-const get = () => {
-    return Product.find({}, {_v: 0});
-};
+// Implementing pagination
+const get = (currentPage,size) => {
+    // currentPage - The current page which you are at.
+    /* size - The Page in which total number of rows(product) can fit. eg if total rows(products) are 11
+    and sizeOfPage is 5 i.e only max 5 rows can pe displayed per page.*/
+
+    // Also, the total number of pages will be 3.
+
+    const rows = 4;
+    const rowsToSkip = (currentPage - 1) * size;
+
+    return Product  
+        .find({},{_v:0})
+        .skip(rowsToSkip)
+        .limit(size);
+}
 
 const getById = (id) => {
     return Product.findById(id, {_v:0});
