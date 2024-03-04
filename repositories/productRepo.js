@@ -17,6 +17,10 @@ const get = (currentPage,size) => {
         .limit(size);
 }
 
+const getCount = () => {
+    return Product.countDocuments();
+}
+
 const getById = (id) => {
     return Product.findById(id, {_v:0});
 }
@@ -45,4 +49,5 @@ module.exports = {
     remove,
     put,
     patch,
+    getCount,
 }
