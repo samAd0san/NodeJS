@@ -2,7 +2,6 @@ const Product = require('../models/productModel');
 
 
 // Implementing pagination with search
-// http://localhost:3000/products/page/1/size/5?search=apple
 const getFilterExp = (search) => { 
     // This function is used for searching product with either brand (Apple) or model (iphone 13 pro)
     // The RegExp() method creates a regular expression object for matching patterns in strings.
@@ -19,14 +18,21 @@ const getCount = (search) => { // while the count in every page should reflect r
     return Product.countDocuments(filter);
 };
 
-const get = (currentPage,size,search) => {
+const get = (currentPage,size,search,sort,direction) => {
     const rowsToSkip = (currentPage - 1) * size;
     const filter = getFilterExp(search);
+
+    // default we'll keep sorting in ascending order
+    let sortDir = 1;
+    if(direction.toLowerCase() === 'desc') { // if users chooses for descending order
+        sortDir = -1; // -1 symbolises for descending order
+    }
     
     return Product  
-    .find(filter,{_v:0})
-    .skip(rowsToSkip)
-    .limit(size);
+        .find(filter,{__v:0})
+        .sort({[sort]: sortDir})
+        .skip(rowsToSkip)
+        .limit(size);
 };
 
 const getById = (id) => {

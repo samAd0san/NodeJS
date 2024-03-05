@@ -7,6 +7,8 @@ const ProductRepo = require('../repositories/productRepo');
 /* We are using async and await because all these methods are asynchronous and it may take n number of time to fetch the data from the 
 data base, so we prefer async and await methods */
 
+// http://localhost:3000/products/page/1/size/5?search=apple&sort=price&direction=desc
+// http://localhost:3000/products/page/1/size/10?search=samsung&sort=price&direction=asc
 // 2. READ (CRUD)
 const get = async(req,res) => {
     try{
@@ -15,22 +17,24 @@ const get = async(req,res) => {
         // extracts the value of the "search" query parameter from the HTTP request.
         // It is a key-value pair appended to the URL after a question mark (?), for example: ?search=Apple.
         const search = req.query.search;
+        const sort = req.query.sort;
+        const direction = req.query.direction || 'asc'; // if the user did not passed the value of direction it'll be in ascending order as default
 
-        const data = await ProductRepo.get(page,size,search);
+        const data = await ProductRepo.get(page,size,search,sort,direction);
         const rows = await ProductRepo.getCount(search);
         const pages = Math.ceil(rows / size);
-        const metaData = {
-            rows,
-            pages,
-        }
+
         const response = {
             data,
-            metaData,
+            rows,
+            pages,
         } 
+
         res.status(200);
         res.json(response);
     }catch (err){   
         console.log(err);
+
         res.status(500);
         res.send('Internal Server Error')
     }
