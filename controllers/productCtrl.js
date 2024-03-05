@@ -2,7 +2,7 @@
 const ProductRepo = require('../repositories/productRepo');
 
 /*Importing productModel.js in productCtrl.js enables the controller to access and manipulate the product data using the defined Mongoose model. */
-// index.js -> routes -> controllers -> model
+// index.js -> routes -> controllers -> model -> repository
 
 /* We are using async and await because all these methods are asynchronous and it may take n number of time to fetch the data from the 
 data base, so we prefer async and await methods */
@@ -12,12 +12,13 @@ const get = async(req,res) => {
     try{
         const page = req.params.page || 1;
         const size = req.params.size || 2;
+        // extracts the value of the "search" query parameter from the HTTP request.
+        // It is a key-value pair appended to the URL after a question mark (?), for example: ?search=Apple.
+        const search = req.query.search;
 
-        const rows = await ProductRepo.getCount();
+        const data = await ProductRepo.get(page,size,search);
+        const rows = await ProductRepo.getCount(search);
         const pages = Math.ceil(rows / size);
-
-        const data = await ProductRepo.get(page,size);
-
         const metaData = {
             rows,
             pages,
@@ -26,12 +27,10 @@ const get = async(req,res) => {
             data,
             metaData,
         } 
-        console.log();
         res.status(200);
-        console.log();
         res.json(response);
-    }catch (err){
-        console.log(err);   
+    }catch (err){   
+        console.log(err);
         res.status(500);
         res.send('Internal Server Error')
     }
