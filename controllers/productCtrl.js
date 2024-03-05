@@ -12,17 +12,19 @@ data base, so we prefer async and await methods */
 // 2. READ (CRUD)
 const get = async(req,res) => {
     try{
-        const page = req.params.page || 1;
-        const size = req.params.size || 2;
-        // extracts the value of the "search" query parameter from the HTTP request.
-        // It is a key-value pair appended to the URL after a question mark (?), for example: ?search=Apple.
-        const search = req.query.search;
-        const sort = req.query.sort;
-        const direction = req.query.direction || 'asc'; // if the user did not passed the value of direction it'll be in ascending order as default
+        const options = {
+            page : req.params.page || 1,
+            size : req.params.size || 2,
+            // extracts the value of the "search" query parameter from the HTTP request.
+            // It is a key-value pair appended to the URL after a question mark (?), for example: ?search=Apple.
+            search : req.query.search,
+            sort : req.query.sort || 'updatedDate',
+            direction : req.query.direction || 'asc', // if the user did not passed the value of direction it'll be in ascending order as default
+        }
 
-        const data = await ProductRepo.get(page,size,search,sort,direction);
-        const rows = await ProductRepo.getCount(search);
-        const pages = Math.ceil(rows / size);
+        const data = await ProductRepo.get(options);
+        const rows = await ProductRepo.getCount(options.search);
+        const pages = Math.ceil(rows / options.size);
 
         const response = {
             data,

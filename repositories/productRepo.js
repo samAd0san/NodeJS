@@ -18,7 +18,9 @@ const getCount = (search) => { // while the count in every page should reflect r
     return Product.countDocuments(filter);
 };
 
-const get = (currentPage,size,search,sort,direction) => {
+const get = (options) => {
+    const {size,currentPage,sort,search,direction} = options; // property destructure - we are extracting all the attributes of object 'option'
+    // and then assigning to the variable name which is mentioned, and both the variable names are same.
     const rowsToSkip = (currentPage - 1) * size;
     const filter = getFilterExp(search);
 
