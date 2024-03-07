@@ -28,3 +28,6 @@ total pages:  Math.ceil(total rows)/page size (if 10.1 - ceil -> 11) and floor w
 3: 21 - 30  skip: 20 (3-1)* 10 = 20
 4: 31 - 40 skip: 30  (4-1)*10 = 30
 ( current page - 1 ) * pageSize
+
+### encrypting the password
+npm install bcrypt
