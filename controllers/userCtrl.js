@@ -8,7 +8,7 @@ const signup = async(req,res) => {
         /* the code hashes the password received in the request body using bcrypt with a cost 
         factor of 2, then logs the modified payload object to the console. */
         playload.password = await bcrypt.hash(playload.password,2);
-        console.log(playload); // This will print the body with (encrypted password) entered by the user at the cmd itself
+        // console.log(playload); // This will print the body with (encrypted password) entered by the user at the cmd itself
 
         playload.createdDate = new Date();
 
@@ -25,6 +25,36 @@ const signup = async(req,res) => {
     }
 };
 
+const signin = async(req,res) => {
+    try{
+        const body = req.body;
+
+        // we are taking email as an input from the user
+        const dbUser = await userRepo.getUserByEmail(body.email);
+        if(!dbUser) {
+            // checking if the email entered is valid or not
+            res.status(401).send('Invalid email or password');
+            return;
+        }
+
+        // comparing the password of entered email with the email in the database
+        const isValid = await bcrypt.compare(body.password,dbUser.password);
+        if(isValid) {
+            // This will not work if the password of the user in db is not encrypted, it should be encrypted
+            res.status(200).json({
+                firstName: dbUser.firstName,
+                lastName: dbUser.lastName
+            });
+        }else{
+            res.status(401).send('Invalid email or password');
+        }
+    }catch(err){
+        console.log(err.message);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
 module.exports = {
     signup,
+    signin,
 }
