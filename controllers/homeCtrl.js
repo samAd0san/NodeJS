@@ -1,12 +1,11 @@
 class HomeCtrl{
     home(req,res) {
-        res.status(200);
-        res.send('Express API');
+        res.status(200).send('Express API');
     }
 
     health(req,res) {
-        res.status(200);
-        res.json({status:'Up'});
+        console.log(req.id, "id");
+        res.status(200).json({status:'Up'});
     }
 }
 
