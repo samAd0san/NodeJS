@@ -14,7 +14,7 @@ const get = async(req,res) => {
     try{
         const options = {
             page : req.params.page || 1,
-            size : req.params.size || 2,
+            size : req.params.size || 10,
             // extracts the value of the "search" query parameter from the HTTP request.
             // It is a key-value pair appended to the URL after a question mark (?), for example: ?search=Apple.
             search : req.query.search,

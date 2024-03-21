@@ -31,3 +31,12 @@ total pages:  Math.ceil(total rows)/page size (if 10.1 - ceil -> 11) and floor w
 
 ### encrypting the password
 npm install bcrypt
+
+### basic authentication
+1. create middleware/auth.js -> basicAuth
+2. In routes.js specify the middle ware
+3. Now, in postman (GET)
+Authorization -> basic auth -> username = admin , password = password
+URL: //localhost:3000/books or products
+- we can access '/' and 'signin' 'signup' endpoint without authentication
+4. Base64 - It is used to convert binary data into ASCII characters (text characters).

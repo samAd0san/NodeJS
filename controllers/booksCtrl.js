@@ -3,7 +3,7 @@
 // We are applying CRUD Operation in this file (CREATE(POST), READ(GET), UPDATE(PUT,PATCH), DELETE(DELETE))
 
 // This is like a database but in cache memory (The changes are not permanent since it resides in the program itself)
-const bookDb = [{id:1,name:'Atomic Habits',price:499},{id:2,name:'OniiSan',price:349}];
+const bookDb = [{id:1,name:'Atomic Habits',price:499},{id:2,name:'JaXX Timber',price:349},{id:3,name:'To Bed',price:299}];
 const authorDb = ['James Bond','Karl bond'];
 
 // Creating a handler function for callback (fn for bookDb)
