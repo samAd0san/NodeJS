@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken');
+const config = require('../config/index.js');
+
 function basicAuth(req,res,next) {
     const authHeader = req.headers.authorization // Enter from postman (Authorization)
     // Postman automatically encodes the credentials in Base64 format.
@@ -21,6 +24,28 @@ function basicAuth(req,res,next) {
     }
 }
 
+function tokenAuth(req,res,next) {
+    const authHeader = req.headers.authorization;
+    console.log(authHeader); 
+    // Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI.....
+    if (!authHeader) {
+        res.status(401).send('Unauthorized');
+    }
+
+    const tokens = authHeader.split(' ');
+    const authToken = tokens[1];
+
+    // Token Verify
+    jwt.verify(authToken,config.jwtSecret,function(err,decoded){
+        if(err){
+            res.status(401).send('Unauthorized');
+        }else{
+            console.log(decoded); // { email: 'admin@cgc.com', iat: 1711017469, exp: 1711103869 }
+            next();
+        }
+    });
+}
 module.exports = {
     basicAuth,
+    tokenAuth,
 }

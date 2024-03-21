@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const userRepo = require('../repositories/userRepo');
+const config = require('../config/index');
 
 /*
 const signup1 = async(req,res) => {  
@@ -65,7 +67,9 @@ const signin = async(req,res) => {
             // This will not work if the password of the user in db is not encrypted, it should be encrypted
             res.status(200).json({
                 firstName: dbUser.firstName,
-                lastName: dbUser.lastName
+                lastName: dbUser.lastName,
+                // jwt.sign is used for generating JSON Web Tokens
+                token: jwt.sign({email : dbUser.email},config.jwtSecret,{expiresIn : '1d'})
             });
         }else{
             res.status(401).send('Invalid email or password');

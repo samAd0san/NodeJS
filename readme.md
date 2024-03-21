@@ -1,12 +1,4 @@
-#NodeJS
-### Creating a NodeJS Server using 'init npm'
-### Defining routes using NodeJS
-### Defining routes using expressJS
-
-#### controller folder include all the handler (callback) function
-#### routes folder contains all the route specific files
-
-#### Using Update(patch) logic:
+### Using Update(patch) logic:
 for(let i=0; i < bookDb.length; i++){
         if(bookDb[i].id === id){
             for(let key in playload){
@@ -40,3 +32,16 @@ Authorization -> basic auth -> username = admin , password = password
 URL: //localhost:3000/books or products
 - we can access '/' and 'signin' 'signup' endpoint without authentication
 4. Base64 - It is used to convert binary data into ASCII characters (text characters).
+
+### token authentication
+1. install jwt 
+   npm i jsonwebtoken
+2. create config/index.js -> for env variable i.e secret key
+3. To generate Temparory tokens 
+   jwt.sign(payload,jwtSecretKey,expiry date)
+4. To verify The token (which is passed in Bearer token)
+   jwt.verify(generatedToken,jwtSecretKey,callback(err,decoded))
+5. To send Request in postman
+   5.1 - (POST) /signin, enter credentials, the token will be generated, copy the generated token.
+   5.2 - (GET) goto Authorization -> type (Bearer Token) -> paste token
+   5.3 - (GET) access endpoint /books or /products

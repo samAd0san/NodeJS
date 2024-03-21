@@ -30,7 +30,8 @@ console.log('db Connected');
 app.use(homeRoutes);
 app.use(userRoutes);
 
-app.use(auth.basicAuth);
+// app.use(auth.basicAuth);
+app.use(auth.tokenAuth);
 
 app.use(bookRoutes);
 app.use(productRoutes);

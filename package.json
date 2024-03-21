@@ -13,6 +13,7 @@
     "express": "^4.18.3",
     "finalhandler": "^1.2.0",
     "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.1"
   },
   "devDependencies": {
