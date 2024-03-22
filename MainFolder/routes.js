@@ -28,7 +28,7 @@ console.log('db Connected');
 
 // READ Operation in CRUD
 app.use(homeRoutes);
-app.use(userRoutes);
+app.use('/users',userRoutes);
 
 // app.use(auth.basicAuth);
 app.use(auth.tokenAuth);

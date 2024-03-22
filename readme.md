@@ -45,3 +45,17 @@ URL: //localhost:3000/books or products
    5.1 - (POST) /signin, enter credentials, the token will be generated, copy the generated token.
    5.2 - (GET) goto Authorization -> type (Bearer Token) -> paste token
    5.3 - (GET) access endpoint /books or /products
+
+### authorization
+authorizing (giving permission) to the user to delete the product, setting the role - 'Admin'
+1. add role in userModel
+2. jwt.sign
+3. jwt.verify
+4. productRoutes.js
+
+- Steps to execute
+1. create the user 
+2. first signin (if tokenAuth) via post
+3. then cp the token and paste in Authorization -> bearer token
+4. access /products endpoint
+5. try to perform (DELETE) operation if the user role is admin

@@ -26,7 +26,7 @@ function basicAuth(req,res,next) {
 
 function tokenAuth(req,res,next) {
     const authHeader = req.headers.authorization;
-    console.log(authHeader); 
+    // console.log(authHeader); 
     // Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI.....
     if (!authHeader) {
         res.status(401).send('Unauthorized');
@@ -40,12 +40,21 @@ function tokenAuth(req,res,next) {
         if(err){
             res.status(401).send('Unauthorized');
         }else{
+            req.role = decoded.role;
             console.log(decoded); // { email: 'admin@cgc.com', iat: 1711017469, exp: 1711103869 }
             next();
         }
     });
 }
+
+function authorizeAdmin(req,res,next) {
+    console.log('Role: ',req.role)
+    if(req.role === 'Admin') next();
+    else res.status(403).send('Forbidden');
+}
+
 module.exports = {
     basicAuth,
     tokenAuth,
+    authorizeAdmin
 }

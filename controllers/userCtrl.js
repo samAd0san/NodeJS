@@ -51,10 +51,12 @@ const signup = async(req,res) => {
 
 const signin = async(req,res) => {
     try{
-        const body = req.body;
+        const payload = req.body;
+        // hardcoded - User/Admin (This will change the default role of the user)
+        payload.role = 'Admin';
 
         // we are taking email as an input from the user
-        const dbUser = await userRepo.getUserByEmail(body.email);
+        const dbUser = await userRepo.getUserByEmail(payload.email);
         if(!dbUser) {
             // checking if the email entered is valid or not
             res.status(401).send('Invalid email or password');
@@ -62,16 +64,17 @@ const signin = async(req,res) => {
         }
 
         // comparing the password of entered email with the email in the database
-        const isValid = await bcrypt.compare(body.password,dbUser.password);
+        const isValid = await bcrypt.compare(payload.password,dbUser.password);
         if(isValid) {
             // This will not work if the password of the user in db is not encrypted, it should be encrypted
             res.status(200).json({
                 firstName: dbUser.firstName,
                 lastName: dbUser.lastName,
                 // jwt.sign is used for generating JSON Web Tokens
-                token: jwt.sign({email : dbUser.email},config.jwtSecret,{expiresIn : '1d'})
+                token: jwt.sign({email : dbUser.email,role : dbUser.role},config.jwtSecret,{expiresIn : '1d'})
             });
         }else{
+            // checking if the password entered is valid or not
             res.status(401).send('Invalid email or password');
         }
     }catch(err){
