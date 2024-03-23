@@ -41,7 +41,7 @@ function tokenAuth(req,res,next) {
             res.status(401).send('Unauthorized');
         }else{
             req.role = decoded.role;
-            console.log(decoded); // { email: 'admin@cgc.com', iat: 1711017469, exp: 1711103869 }
+            // console.log(decoded); // { email: 'admin@cgc.com', iat: 1711017469, exp: 1711103869 }
             next();
         }
     });

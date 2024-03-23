@@ -3,6 +3,8 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
+const fs = require('fs');
 
 const homeRoutes = require('../routes/homeRoutes');
 const bookRoutes = require('../routes/bookRoutes');
@@ -17,6 +19,11 @@ const port = 3000;
 app.listen(port,()=>{
     console.log(`The port is running on ${port}`);
 })
+
+const fsStream = fs.createWriteStream(__dirname + "/logs/request.log", {flags : 'a'}); // flag : a -> appends all the logs to requset.log file
+
+app.use(morgan('dev')); // This will display the logs on the shell
+app.use(morgan('combined', {stream : fsStream})); // This will add all the logs to the request.log file 
 
 // when creating the new resources using post i was getting null so resolve that
 app.use(express.json());

@@ -59,3 +59,14 @@ authorizing (giving permission) to the user to delete the product, setting the r
 3. then cp the token and paste in Authorization -> bearer token
 4. access /products endpoint
 5. try to perform (DELETE) operation if the user role is admin
+
+### request logging
+- We are adding all the 'logs' to the /MainFolder/logs/request.log file, to track all the HTTP req
+of the users.
+1. Request logging is the process of capturing and recording information about incoming HTTP
+requests to a server for monitoring, debugging, and analysis purposes.
+2. npm i morgan
+3. Morgan is a middleware for request logging in Node.js web applications, providing customizable
+logging formats and destinations.
+4. createWriteStream function in the fs module of Node.js creates a writable stream for writing
+data to a specified file.
