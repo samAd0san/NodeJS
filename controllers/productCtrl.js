@@ -1,5 +1,6 @@
 // const Product = require('../models/productModel'); // shifted to productRepo.js
 const ProductRepo = require('../repositories/productRepo');
+const logger = require('../utils/logger');
 
 /*Importing productModel.js in productCtrl.js enables the controller to access and manipulate the product data using the defined Mongoose model. */
 // index.js -> routes -> controllers -> model -> repository
@@ -12,6 +13,7 @@ data base, so we prefer async and await methods */
 // 2. READ (CRUD)
 const get = async(req,res) => {
     try{
+        logger.info('Fetching Products');
         const options = {
             page : req.params.page || 1,
             size : req.params.size || 10,
@@ -26,6 +28,7 @@ const get = async(req,res) => {
         const rows = await ProductRepo.getCount(options.search);
         const pages = Math.ceil(rows / options.size);
 
+        logger.info('Fetching Products');
         const response = {
             data,
             rows,

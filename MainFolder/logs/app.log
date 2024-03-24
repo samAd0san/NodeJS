@@ -1,0 +1,43 @@
+::1 - - [24/Mar/2024:07:30:09 +0000] "GET /books HTTP/1.1" 200 124 "-" "PostmanRuntime/7.37.0"
+::1 - - [24/Mar/2024:07:31:09 +0000] "GET /books HTTP/1.1" 200 124 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":12852,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:31:27.729Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":12852,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:31:27.769Z","v":0}
+::1 - - [24/Mar/2024:07:31:27 +0000] "GET /products HTTP/1.1" 200 1091 "-" "PostmanRuntime/7.37.0"
+::1 - - [24/Mar/2024:07:33:06 +0000] "POST /signup HTTP/1.1" 404 9 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":12852,"level":30,"msg":"signup started","time":"2024-03-24T07:33:15.494Z","v":0}
+::1 - - [24/Mar/2024:07:33:15 +0000] "POST /users/signup HTTP/1.1" 201 7 "-" "PostmanRuntime/7.37.0"
+::1 - - [24/Mar/2024:07:33:23 +0000] "POST /users/signin HTTP/1.1" 200 193 "-" "PostmanRuntime/7.37.0"
+::1 - - [24/Mar/2024:07:33:57 +0000] "POST /users/products HTTP/1.1" 404 9 "-" "PostmanRuntime/7.37.0"
+::1 - - [24/Mar/2024:07:34:09 +0000] "GET /users/products HTTP/1.1" 404 9 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":12852,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:34:14.836Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":12852,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:34:14.847Z","v":0}
+::1 - - [24/Mar/2024:07:34:14 +0000] "GET /products HTTP/1.1" 200 1091 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":12852,"level":30,"msg":"signup started","time":"2024-03-24T07:35:09.666Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":12852,"level":50,"location":"userCtrl","err":{"index":0,"code":11000,"keyPattern":{"email":1},"keyValue":{"email":"samad@gmail.com"}},"msg":"E11000 duplicate key error collection: cgc-db.users index: email_1 dup key: { email: \"samad@gmail.com\" }","time":"2024-03-24T07:35:09.676Z","v":0}
+::1 - - [24/Mar/2024:07:35:09 +0000] "POST /users/signup HTTP/1.1" 400 20 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":18928,"level":30,"msg":"signup started","time":"2024-03-24T07:35:57.201Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":18928,"level":50,"location":"userCtrl","err":{"index":0,"code":11000,"keyPattern":{"email":1},"keyValue":{"email":"samad@gmail.com"}},"msg":"E11000 duplicate key error collection: cgc-db.users index: email_1 dup key: { email: \"samad@gmail.com\" }","time":"2024-03-24T07:35:57.228Z","v":0}
+::1 - - [24/Mar/2024:07:35:57 +0000] "POST /users/signup HTTP/1.1" 400 20 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"signup started","time":"2024-03-24T07:39:14.575Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":50,"location":"userCtrl","err":{"index":0,"code":11000,"keyPattern":{"email":1},"keyValue":{"email":"samad@gmail.com"}},"msg":"E11000 duplicate key error collection: cgc-db.users index: email_1 dup key: { email: \"samad@gmail.com\" }","time":"2024-03-24T07:39:14.615Z","v":0}
+::1 - - [24/Mar/2024:07:39:14 +0000] "POST /users/signup HTTP/1.1" 400 20 "-" "PostmanRuntime/7.37.0"
+::1 - - [24/Mar/2024:07:39:22 +0000] "POST /products HTTP/1.1" 201 7 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:39:30.080Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:39:30.118Z","v":0}
+::1 - - [24/Mar/2024:07:39:30 +0000] "GET /products HTTP/1.1" 200 1091 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:40:13.155Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:40:13.168Z","v":0}
+::1 - - [24/Mar/2024:07:40:13 +0000] "GET /products/page/1/size/10 HTTP/1.1" 200 1091 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:44:41.831Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:44:41.842Z","v":0}
+::1 - - [24/Mar/2024:07:44:41 +0000] "GET /products HTTP/1.1" 200 1091 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:45:08.549Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:45:08.555Z","v":0}
+::1 - - [24/Mar/2024:07:45:08 +0000] "GET /products HTTP/1.1" 200 1091 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:45:22.218Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:45:22.225Z","v":0}
+::1 - - [24/Mar/2024:07:45:22 +0000] "GET /products HTTP/1.1" 200 1091 "-" "PostmanRuntime/7.37.0"
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:45:27.709Z","v":0}
+{"name":"logger-instance","hostname":"LAPTOP-TT718LRE","pid":1588,"level":30,"msg":"Fetching Products","time":"2024-03-24T07:45:27.715Z","v":0}
+::1 - - [24/Mar/2024:07:45:27 +0000] "GET /products HTTP/1.1" 200 1091 "-" "PostmanRuntime/7.37.0"
+::1 - - [24/Mar/2024:07:45:36 +0000] "GET /productsd HTTP/1.1" 404 9 "-" "PostmanRuntime/7.37.0"
