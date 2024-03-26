@@ -28,7 +28,7 @@ const get = async(req,res) => {
         const rows = await ProductRepo.getCount(options.search);
         const pages = Math.ceil(rows / options.size);
 
-        logger.info('Fetching Products');
+        // logger.info('Fetching Products');
         const response = {
             data,
             rows,

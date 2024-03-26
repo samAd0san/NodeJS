@@ -4,7 +4,7 @@
   "description": "Creating a node server",
   "main": "routes.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "node routes.js"
   },
   "author": "",
   "license": "ISC",

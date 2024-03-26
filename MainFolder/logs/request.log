@@ -1,9 +1,0 @@
-::1 - - [23/Mar/2024:17:48:39 +0000] "GET / HTTP/1.1" 200 11 "-" "PostmanRuntime/7.37.0"
-::1 - - [23/Mar/2024:17:48:50 +0000] "GET /health HTTP/1.1" 200 15 "-" "PostmanRuntime/7.37.0"
-::1 - - [23/Mar/2024:17:49:00 +0000] "GET /healthd HTTP/1.1" 404 9 "-" "PostmanRuntime/7.37.0"
-::1 - - [23/Mar/2024:17:49:31 +0000] "GET /books HTTP/1.1" 200 124
-::1 - - [23/Mar/2024:17:49:49 +0000] "GET /products HTTP/1.1" 200 1091
-::1 - - [23/Mar/2024:17:50:01 +0000] "GET /products HTTP/1.1" 401 12
-::1 - - [23/Mar/2024:17:50:22 +0000] "GET /books HTTP/1.1" 401 12 "-" "PostmanRuntime/7.37.0"
-::1 - - [23/Mar/2024:17:51:53 +0000] "GET /books HTTP/1.1" 401 12 "-" "PostmanRuntime/7.37.0"
-::1 - - [23/Mar/2024:17:52:20 +0000] "GET /books HTTP/1.1" 200 124 "-" "PostmanRuntime/7.37.0"

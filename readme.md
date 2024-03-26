@@ -79,3 +79,7 @@ data to a specified file.
 3. productCtrl
 4. userCtrl
 5. routes.js (mainFile)
+
+### deployment 
+2. install mongodb compass
+1. mongodb atlas 

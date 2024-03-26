@@ -7,12 +7,12 @@ const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
 
-const homeRoutes = require('../routes/homeRoutes');
-const bookRoutes = require('../routes/bookRoutes');
+const homeRoutes = require('./routes/homeRoutes');
+const bookRoutes = require('./routes/bookRoutes');
 
-const productRoutes = require('../routes/productRoutes');
-const userRoutes = require('../routes/userRoutes');
-const auth = require('../middleware/auth');
+const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
+const auth = require('./middleware/auth');
 
 const app = express();
 const port = 3000;
@@ -41,7 +41,9 @@ app.use(morgan('combined', {stream : fsStream})); // This will add all the logs 
 app.use(express.json());
 
 // To connect mongoDb with nodeJSx
-mongoose.connect('mongodb://localhost:27017/cgc-db');
+// mongoose.connect('mongodb://localhost:27017/cgc-db');
+const conStr = 'mongodb+srv://admin:admin@samadscluster.a4s9jvf.mongodb.net';
+mongoose.connect(conStr);
 console.log('db Connected');
 
 
