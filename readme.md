@@ -81,5 +81,7 @@ data to a specified file.
 5. routes.js (mainFile)
 
 ### deployment 
-2. install mongodb compass
-1. mongodb atlas 
+1. env variables
+2. start : node index.js -> npm start
+3. mongodb remote db setup
+4. render

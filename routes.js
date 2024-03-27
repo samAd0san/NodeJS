@@ -15,7 +15,7 @@ const userRoutes = require('./routes/userRoutes');
 const auth = require('./middleware/auth');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 /* If the directory does not already exist, it first checks for its existence using fs.existsSync(). If the directory doesn't
 exist, it creates the directory using fs.mkdirSync(). This is typically done to ensure that a logs directory exists before
@@ -42,7 +42,7 @@ app.use(express.json());
 
 // To connect mongoDb with nodeJSx
 // mongoose.connect('mongodb://localhost:27017/cgc-db');
-const conStr = 'mongodb+srv://admin:admin@samadscluster.a4s9jvf.mongodb.net';
+const conStr = process.env.dbConStr;
 mongoose.connect(conStr);
 console.log('db Connected');
 
