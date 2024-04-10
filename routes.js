@@ -40,11 +40,14 @@ app.use(morgan('combined', {stream : fsStream})); // This will add all the logs 
 // when creating the new resources using post i was getting null so resolve that
 app.use(express.json());
 
-// To connect mongoDb with nodeJSx
-// mongoose.connect('mongodb://localhost:27017/cgc-db');
-const conStr = process.env.dbConStr;
-mongoose.connect(conStr);
+// To connect mongoDb with nodeJS (local)
+mongoose.connect('mongodb://localhost:27017/cgc-db');
+
+// This is to connect to the remote mongodb
+// const conStr = process.env.dbConStr;
+// mongoose.connect(conStr);
 console.log('db Connected');
+app.use(express.static('uploads/'));
 
 
 // READ Operation in CRUD
@@ -52,7 +55,7 @@ app.use(homeRoutes);
 app.use('/users',userRoutes);
 
 // app.use(auth.basicAuth);
-app.use(auth.tokenAuth);
+// app.use(auth.tokenAuth);
 
 app.use(bookRoutes);
 app.use(productRoutes);

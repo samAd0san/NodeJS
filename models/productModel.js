@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
     price: Number,
     inStock: Boolean,
     discount: Number,
+    image: String,
     createdDate: Date,
     updateDate: {
         type: Date,

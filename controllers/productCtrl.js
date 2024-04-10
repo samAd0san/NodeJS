@@ -13,7 +13,7 @@ data base, so we prefer async and await methods */
 // 2. READ (CRUD)
 const get = async(req,res) => {
     try{
-        logger.info('Fetching Products');
+        // logger.info('Fetching Products');
         const options = {
             page : req.params.page || 1,
             size : req.params.size || 10,
@@ -25,6 +25,14 @@ const get = async(req,res) => {
         }
 
         const data = await ProductRepo.get(options);
+
+        for(let i = 0; i < data.length; i++){
+            if(data[i].image){
+                const protocol = req.protocol;
+                const domain = req.get('host');
+                data[i].image = `${protocol}://${domain}/${data[i].image}`;
+            }
+        }
         const rows = await ProductRepo.getCount(options.search);
         const pages = Math.ceil(rows / options.size);
 
@@ -71,6 +79,7 @@ const post = async(req,res) =>{
         res.send('Created');
         
     }catch(err){
+        console.log(err);
         res.status(500);
         res.send('Internal Server Error');
     }

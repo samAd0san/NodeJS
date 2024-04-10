@@ -85,3 +85,12 @@ data to a specified file.
 2. start : node index.js -> npm start
 3. mongodb remote db setup
 4. render
+
+### file upload
+1. install multer (multi media uploader)
+2. npm i multer
+3. first we are uploading and saving the image
+6. productModel.js
+4. productRoutes.js
+5. routes.js
+7. productCtrl.js -> get 
