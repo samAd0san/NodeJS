@@ -94,3 +94,7 @@ data to a specified file.
 4. productRoutes.js
 5. routes.js
 7. productCtrl.js -> get 
+
+### Validations
+1. in email section we are using regExp to configure if the user i/p an incorrect email
+i.e not include '@' then give error

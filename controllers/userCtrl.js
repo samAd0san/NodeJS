@@ -33,7 +33,7 @@ const signup1 = async(req,res) => {
 const emailExists = (err) => err.message && err.message.indexOf('duplicate key error') > -1
 const signup = async(req,res) => {
     try {
-        logger.info('signup started');
+        // logger.info('signup started');
         const payload = req.body;
         payload.password = await bcrypt.hash(payload.password,2);
         payload.createdDate = new Date();
@@ -41,16 +41,16 @@ const signup = async(req,res) => {
         await userRepo.add(payload);
         res.status(201).send('Created');
     } catch (err) {
-        logger.error({
-            location : 'userCtrl',
-            err : err
-        });
-        // console.error(err.message);
+        // logger.error({
+        //     location : 'userCtrl',
+        //     err : err
+        // });
+        console.error(err.message);
         if(emailExists(err)){
             // console.error(emailExists(err));
             res.status(400).send('Email Already Exists');
         }else{
-            res.send(500).send('Internal Server Error');
+            res.status(500).send('Internal Server Error');
         }
     }
 };
