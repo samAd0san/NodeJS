@@ -59,6 +59,13 @@ const getById = async(req,res) => {
     // findById() function in Mongoose is used to find a single document in a MongoDB collection by its unique identifier (ID).
     const data = await ProductRepo.getById(id);
 
+    if(data.image){
+        const protocol = req.protocol;
+        const domain = req.get('host');
+
+        data.image = `${protocol}://${domain}/${data.image}`;
+    }
+
     if(!data){
         res.status(500);
         res.send('Internal Server Error');
