@@ -38,7 +38,7 @@ const get = (options) => {
 };
 
 const getById = (id) => {
-    return Product.findById(id, {_v:0});
+    return Product.findById(id, { __v:0 });
 };
 
 const create = (body) => {

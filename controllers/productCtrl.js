@@ -72,7 +72,9 @@ const getById = async(req,res) => {
         res.send('Internal Server Error');
     }else{
         const reviews = await reviewRepo.get(id);
-        const response = {...data._doc, reviews}
+        const avgRating = await reviewRepo.getAvgRating(id);
+        const avg = avgRating[0]?.avg;
+        const response = {...data._doc, avg, reviews}
         res.status(200);
         res.json(response);
     }

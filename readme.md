@@ -101,7 +101,15 @@ i.e not include '@' then give error
 
 ### adding reviews in the review-db
 1. The reviews are only added but not linked to the products.
+body : {
+   "subject" : "Cheap iphone",
+   "message" : "don't purchase iphone only waste of money",
+   "rating" : 5
+}
 
 ### get reviews i.e getById (products)
-1. we are getting the reviews by the product id.
+1. Getting the reviews by the product id.
+
+### average rating of all the reviews
+1. Calculating the average rating from all the reviews using aggeration pipeline
 
