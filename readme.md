@@ -101,3 +101,7 @@ i.e not include '@' then give error
 
 ### adding reviews in the review-db
 1. The reviews are only added but not linked to the products.
+
+### get reviews i.e getById (products)
+1. we are getting the reviews by the product id.
+

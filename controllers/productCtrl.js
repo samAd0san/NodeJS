@@ -71,8 +71,10 @@ const getById = async(req,res) => {
         res.status(500);
         res.send('Internal Server Error');
     }else{
+        const reviews = await reviewRepo.get(id);
+        const response = {...data._doc, reviews}
         res.status(200);
-        res.json(data);
+        res.json(response);
     }
 };
 
