@@ -1,5 +1,6 @@
 // const Product = require('../models/productModel'); // shifted to productRepo.js
 const ProductRepo = require('../repositories/productRepo');
+const reviewRepo = require('../repositories/reviewRepo');
 const logger = require('../utils/logger');
 
 /*Importing productModel.js in productCtrl.js enables the controller to access and manipulate the product data using the defined Mongoose model. */
@@ -73,7 +74,7 @@ const getById = async(req,res) => {
         res.status(200);
         res.json(data);
     }
-}
+};
 
 // 1. CREATE (CRUD)
 const post = async(req,res) =>{
@@ -90,7 +91,7 @@ const post = async(req,res) =>{
         res.status(500);
         res.send('Internal Server Error');
     }
-}
+};
 
 // 4. DELETE (CRUD)
 const remove = async(req,res) => {
@@ -104,7 +105,7 @@ const remove = async(req,res) => {
         res.status(500);
         res.send('Internal Server Error');
     }
-}
+};
 
 // 3. UPDATE (CRUD)
 const put = async(req,res) => {
@@ -118,7 +119,7 @@ const put = async(req,res) => {
         res.status(500);
         res.send('Internal Server Error');
     }
-}
+};
 
 // 3. UPDATE (CRUD)
 const patch = async(req,res) => {
@@ -131,7 +132,23 @@ const patch = async(req,res) => {
     }catch{
         res.status(500).send('Internal Server Error');
     }
-}
+};
+
+const addReview = async(req,res) => {
+    try{
+        const productId = req.params.id;
+        const payload = req.body;
+    
+        payload.productId = productId; // we are adding the product id to the payload, the first argument will be id of product
+        payload.createdDate = new Date();
+    
+        await reviewRepo.add(payload);
+        res.status(201).send('Created');
+    }catch(err){
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
+};
 
 module.exports = {
     get,
@@ -140,4 +157,5 @@ module.exports = {
     remove,
     put,
     patch,
+    addReview,
 }

@@ -31,4 +31,6 @@ router.delete('/products/:id',auth.authorizeAdmin,productCtrl.remove);
 router.put('/products/:id',productCtrl.put);
 router.patch('/products/:id',productCtrl.patch);
 
+router.post('/products/:id/reviews',productCtrl.addReview);
+
 module.exports = router;
