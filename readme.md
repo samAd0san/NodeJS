@@ -113,3 +113,13 @@ body : {
 ### average rating of all the reviews
 1. Calculating the average rating from all the reviews using aggeration pipeline
 
+### cors
+- From my react(frontend) application i was not able to access the api of the node(backend) application due to CORS.
+
+- CORS (Cross-Origin Resource Sharing) is a security feature implemented by web browsers to restrict HTTP requests initiated from scripts running in a web page to resources in a different origin.
+
+- To Resolve this issue
+1. npm install cors
+2. in routes.js -> 
+const cors = require('cors');
+app.use(cors({ origin : 'http://localhost:5173 }))

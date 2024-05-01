@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 const homeRoutes = require('./routes/homeRoutes');
 const bookRoutes = require('./routes/bookRoutes');
@@ -16,6 +17,9 @@ const auth = require('./middleware/auth');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Allow requests from http://localhost:5173
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 /* If the directory does not already exist, it first checks for its existence using fs.existsSync(). If the directory doesn't
 exist, it creates the directory using fs.mkdirSync(). This is typically done to ensure that a logs directory exists before

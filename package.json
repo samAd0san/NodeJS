@@ -4,13 +4,14 @@
   "description": "Creating a node server",
   "main": "routes.js",
   "scripts": {
-    "start" : "node routes.js"
+    "start": "node routes.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bunyan": "^1.8.15",
+    "cors": "^2.8.5",
     "express": "^4.18.3",
     "finalhandler": "^1.2.0",
     "i": "^0.3.7",
