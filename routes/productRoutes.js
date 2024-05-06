@@ -27,7 +27,8 @@ router.get('/products/:id',productCtrl.getById);
 // router.post('/products',productCtrl.post);
 router.post('/products',upload.single('image'),productCtrl.post);
 
-router.delete('/products/:id',auth.authorizeAdmin,productCtrl.remove);
+router.delete('/products/:id',productCtrl.remove);
+// router.delete('/products/:id',auth.authorizeAdmin,productCtrl.remove);
 router.put('/products/:id',productCtrl.put);
 router.patch('/products/:id',productCtrl.patch);
 

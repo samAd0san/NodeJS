@@ -38,10 +38,15 @@ const get = async(req,res) => {
         const pages = Math.ceil(rows / options.size);
 
         // logger.info('Fetching Products');
-        const response = {
-            data,
+
+        const metadata = {
             rows,
             pages,
+        }
+        
+        const response = {
+            data,
+            metadata
         } 
 
         res.status(200);
@@ -54,8 +59,37 @@ const get = async(req,res) => {
     }
 };
 
-// getById
 const getById = async(req,res) => {
+    try {
+        const id = req.params.id;
+        const data = await ProductRepo.getById(id);
+
+        if(!data) {
+            res.status(404).send('Product not found');
+            return;
+        }
+
+        if(data.image){
+            const protocol = req.protocol;
+            const domain = req.get('host');
+
+            data.image = `${protocol}://${domain}/${data.image}`;
+        }
+
+        const reviews = await reviewRepo.get(id);
+        const avgRating = await reviewRepo.getAvgRating(id);
+        const avg = avgRating[0]?.avg;
+        const response = {...data._doc, avg, reviews}
+        res.status(200).json(response);
+    } catch(err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
+// getById
+const getByIdOld = async(req,res) => {
     const id = req.params.id;
     // findById() function in Mongoose is used to find a single document in a MongoDB collection by its unique identifier (ID).
     const data = await ProductRepo.getById(id);
