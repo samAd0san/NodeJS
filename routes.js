@@ -45,11 +45,12 @@ app.use(morgan('combined', {stream : fsStream})); // This will add all the logs 
 app.use(express.json());
 
 // To connect mongoDb with nodeJS (local)
-mongoose.connect('mongodb://localhost:27017/cgc-db');
+// mongoose.connect('mongodb://localhost:27017/cgc-db');
 
 // This is to connect to the remote mongodb
-// const conStr = process.env.dbConStr;
-// mongoose.connect(conStr);
+const conStr = process.env.dbConStr;
+// const conStr = 'mongodb+srv://admin:admin@samadscluster.a4s9jvf.mongodb.net/';
+mongoose.connect(conStr);
 console.log('db Connected');
 app.use(express.static('uploads/'));
 

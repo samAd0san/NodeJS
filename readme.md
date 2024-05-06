@@ -123,3 +123,7 @@ body : {
 2. in routes.js -> 
 const cors = require('cors');
 app.use(cors({ origin : 'http://localhost:5173 }))
+
+### connecting to remote database
+- env variable for render
+conStr='mongodb+srv://admin:<password>@samadscluster.a4s9jvf.mongodb.net/cgc-remote-db'
