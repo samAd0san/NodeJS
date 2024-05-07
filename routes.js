@@ -48,9 +48,10 @@ app.use(express.json());
 // mongoose.connect('mongodb://localhost:27017/cgc-db');
 
 // This is to connect to the remote mongodb
-const conStr = process.env.dbConStr;
-// const conStr = 'mongodb+srv://admin:admin@samadscluster.a4s9jvf.mongodb.net/';
+const conStr = process.env.dbConStr || 'mongodb+srv://admin:admin@samadscluster.a4s9jvf.mongodb.net/cgc-remote-db';
+// const conStr = 'mongodb+srv://admin:admin@samadscluster.a4s9jvf.mongodb.net/cgc-remote-db';
 mongoose.connect(conStr);
+
 console.log('db Connected');
 app.use(express.static('uploads/'));
 
