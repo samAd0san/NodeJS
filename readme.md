@@ -1,3 +1,12 @@
+### Deployment of the application
+1. update PORT -> process.env.PORT and add env variables like mongodb atlas URI
+2. in package.json -> "scripts" -> "start": "node server.js"
+3. In render
+   - if server.js is at the root (no need to add anything), else add the folder path
+   - Build Command = npm install
+   - Start Command = node server.js
+   - finally add the env variable for the mongodb atlas URI
+
 ### Using Update(patch) logic:
 for(let i=0; i < bookDb.length; i++){
         if(bookDb[i].id === id){
